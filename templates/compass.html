@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>North Indicator</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+      #north-indicator {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid red; /* Adjust color as needed */
+        position: absolute;
+        top: 20px; /* Adjust position as needed */
+        left: 20px; /* Adjust position as needed */
+      }
+    </style>
+    <script>
+      window.addEventListener("deviceorientation", handleOrientation, true);
+
+      function handleOrientation(event) {
+        const arrow = document.getElementById("north-indicator");
+        if (arrow) {
+          const alpha = event.alpha;
+          if (alpha !== null) {
+            // Convert alpha (rotation around z-axis) to degrees
+            const angle = 360 - alpha;
+            // Rotate the arrow indicator to point north
+            arrow.style.transform = `rotate(${angle}deg)`;
+      }
+    }
+  }
+</script>
+
+  </head>
+  <body>
+    <h1>Direction to North pole</h1>
+    <div id="north-indicator"></div>
+  </body>
+</html>
